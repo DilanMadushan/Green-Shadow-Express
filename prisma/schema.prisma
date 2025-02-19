@@ -40,5 +40,19 @@ model Crop{
     
 }
 
+model Log{
+    logCode String @id 
+    image String
+    date String
+    field String
+    crop String
+    staff String
+    fields Field @relation(fields: [field],references: [fieldCode])
+    crops Crop @relation(fields: [crop],references: [cropCode])
+    staffs Staff @relation(fields: [staff],references: [staffId])
+}
+
+
+
 
 
