@@ -94,6 +94,3 @@ model User{
     password String
     role String
 }
-
-
-
