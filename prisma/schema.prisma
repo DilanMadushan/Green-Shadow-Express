@@ -27,4 +27,18 @@ model Field{
     Equipment Equipment[]
 }
 
+model Crop{
+    image String 
+    cropCode String @id 
+    name String
+    scientificName String
+    sesson String
+    category String
+    field String
+    log Log[]
+    fields Field @relation(fields: [field],references: [fieldCode])
+    
+}
+
+
 
