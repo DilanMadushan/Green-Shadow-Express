@@ -52,6 +52,21 @@ model Log{
     staffs Staff @relation(fields: [staff],references: [staffId])
 }
 
+model Staff{
+    staffId String @id
+    firstName String
+    lastName String
+    dob String
+    gender String
+    joinDate String
+    address String
+    mobile String
+    email String
+    log Log[]
+    vehicle Vehicle[]
+    Equipment Equipment[]
+}
+
 
 
 
