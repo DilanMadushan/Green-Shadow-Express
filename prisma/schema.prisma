@@ -67,6 +67,15 @@ model Staff{
     Equipment Equipment[]
 }
 
+model Vehicle{
+    vehicleCode String @id
+    plateNumber String
+    categary String
+    fuelType String
+    status String
+    staff String
+    staffs Staff @relation(fields: [staff],references: [staffId])
+}
 
 
 
