@@ -78,5 +78,17 @@ model Vehicle{
 }
 
 
+model Equipment{
+    equipmentId String @id
+    name String
+    type String
+    status String
+    field String
+    staff String
+    fields Field @relation(fields: [field],references: [fieldCode])
+    staffs Staff @relation(fields: [staff],references: [staffId])
+}
+
+
 
 
