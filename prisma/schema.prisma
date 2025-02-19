@@ -89,6 +89,11 @@ model Equipment{
     staffs Staff @relation(fields: [staff],references: [staffId])
 }
 
+model User{
+    email String @id
+    password String
+    role String
+}
 
 
 
