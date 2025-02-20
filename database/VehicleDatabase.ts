@@ -26,3 +26,16 @@ export const saveVehicle = async(vehicle:VehicleModel)=>{
         console.log(e);
     }    
 }
+
+export const updateVehicle = async(vehicle:VehicleModel)=>{
+    try{
+        const updatedVehicle = await vehicleClint.update({
+            where:{
+                vehicleCode:vehicle.vehicleCode
+            },data:vehicle
+        });
+        return updatedVehicle;
+    }catch(e){
+        console.log(e);
+    }
+}
