@@ -10,3 +10,14 @@ export const getAllLogs = async () => {
         console.log(e);
     } 
 }
+
+export const saveLog = async (log: any) => {
+    try{
+        const savedLog = await logClient.create({
+            data:log
+        });
+        return savedLog;
+    }catch(e){
+        console.log(e);
+    }
+}
