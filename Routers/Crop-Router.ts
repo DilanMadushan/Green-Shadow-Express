@@ -1,17 +1,28 @@
 import express from 'express';
 import CropModel from '../models/CropModel';
 import { json } from 'node:stream/consumers';
+import { 
+    getAllCrops,
+    saveCrop
+ } from '../database/CustomerDatabase';
 
 const router = express.Router();
 
 router.get('/getAll',(req,res)=>{
-    res.send("Get All Crops");
+    const allCrops = getAllCrops();
+
+    allCrops.then((data)=>{
+        res.send(JSON.stringify(data));
+    });
+
 })
 
+
 router.post('/save',async(req,res)=>{
-    const corp:CropModel =req.body;
-    res.send(JSON.stringify(corp));
+    const crop : CropModel = req.body;
+    res.json(await saveCrop(crop));
 })
+
 
 router.patch('/update',(req,res)=>{
     res.send("save All Crops");
