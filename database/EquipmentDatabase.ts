@@ -23,3 +23,17 @@ export const saveEquipment = async(equipment:EquipmentModel)=>{
         console.log(e);
     }
 }
+
+export const updateEquipment = async(equipment:EquipmentModel)=>{
+    try{
+        const updatedEquipment = equipmentClient.update({
+            where:{
+                equipmentId:equipment.equipmentId
+            },
+            data:equipment
+        })
+        return updatedEquipment;
+    }catch(e){
+        console.log(e);
+    }
+}
