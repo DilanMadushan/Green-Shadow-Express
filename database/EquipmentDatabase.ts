@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import EquipmentModel from "../models/EquipmentModel";
 
 const equipmentClient = new PrismaClient().equipment;
 
@@ -9,4 +10,16 @@ export const getAllEquipments = async () => {
     }catch(e){
         console.log(e);
     } 
+}
+
+export const saveEquipment = async(equipment:EquipmentModel)=>{
+    try{
+        const savedEquipments = await equipmentClient.create({
+            data:equipment
+        });
+        return savedEquipments;
+
+    }catch(e){
+        console.log(e);
+    }
 }
