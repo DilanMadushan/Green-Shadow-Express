@@ -1,5 +1,5 @@
 import express from "express";
-import { getAllFields,saveFields,updateField} from "../database/FieldDatabase";
+import { deleteField, getAllFields,saveFields,updateField} from "../database/FieldDatabase";
 import FieldModel from "../models/FieldModel";
 
 
@@ -19,8 +19,9 @@ router.patch('/update',async(req,res)=>{
     res.json(await updateField(field));
 })
 
-router.get('/delete/:code',(req,res)=>{
-    
+router.delete('/delete/:code',async(req,res)=>{
+    const code = req.params.code;
+    res.json(await deleteField(code))
 })
 
 export default router;

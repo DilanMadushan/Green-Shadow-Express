@@ -51,3 +51,16 @@ export const updateField = async (field:FieldModel) => {
         console.log(e);
     }
 }
+
+export const deleteField = async (fieldCode:string) => {
+    try{
+        const deletedField = await fieldClient.delete({
+            where:{
+                fieldCode:fieldCode
+            }
+        });
+        return deletedField;
+    }catch(e){
+        console.log(e);
+    }
+}
