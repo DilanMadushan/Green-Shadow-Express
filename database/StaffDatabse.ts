@@ -40,4 +40,15 @@ export const updateStaff = async (staff:StaffModel) => {
 }
 
 
-const dele
+export const deleteStaff = async(staffId:string)=>{
+    try{
+        const deletedStaff = await staffClient.delete({
+            where:{
+                staffId:staffId
+            }
+        });
+        return deletedStaff;
+    }catch(e){
+        console.log(e);
+    }
+}
