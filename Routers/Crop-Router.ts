@@ -3,7 +3,8 @@ import CropModel from '../models/CropModel';
 import { json } from 'node:stream/consumers';
 import { 
     getAllCrops,
-    saveCrop
+    saveCrop,
+    updateCrop
  } from '../database/CustomerDatabase';
 
 const router = express.Router();
@@ -25,8 +26,9 @@ router.post('/save',async(req,res)=>{
 
 
 
-router.patch('/update',(req,res)=>{
-    res.send("save All Crops");
+router.patch('/update',async(req,res)=>{
+    const crop : CropModel = req.body;
+    res.json(await updateCrop(crop));
 })
 
 router.delete('/delete',(req,res)=>{

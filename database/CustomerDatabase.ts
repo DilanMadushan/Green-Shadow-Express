@@ -35,3 +35,25 @@ export const saveCrop = async (crop:CropModel) => {
         console.log(e);
     }
 }
+
+export const updateCrop = async (crop:CropModel) => {
+    try{
+        const updatedCrop = await cropClient.update({
+            where:{
+                cropCode:crop.cropCode
+            },
+            data:{
+                image : crop.image,
+                name : crop.name,
+                scientificName :crop.scientificName,
+                sesson : crop.sesson,
+                category : crop.category,
+                field : crop.field,
+            }
+        });
+        return updatedCrop;
+        
+    }catch(e){
+        console.log(e);
+    }
+}
