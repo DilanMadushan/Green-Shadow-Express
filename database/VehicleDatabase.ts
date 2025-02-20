@@ -39,3 +39,16 @@ export const updateVehicle = async(vehicle:VehicleModel)=>{
         console.log(e);
     }
 }
+
+export const deleteVehicle = async(vehicleCode:string)=>{
+    try{
+        const deletedVehicle = await vehicleClint.delete({
+            where:{
+                vehicleCode:vehicleCode
+            }
+        });
+        return deletedVehicle;
+    }catch(e){
+        console.log(e);
+    }
+}

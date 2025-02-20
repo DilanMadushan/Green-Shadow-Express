@@ -1,5 +1,5 @@
 import express from 'express';
-import { getAllVehicles,saveVehicle,updateVehicle } from '../database/VehicleDatabase';
+import { getAllVehicles,saveVehicle,updateVehicle,deleteVehicle} from '../database/VehicleDatabase';
 import VehicleModel from '../models/VehicleModel';
 
 const router = express.Router();
@@ -16,5 +16,10 @@ router.post('/save',async(req,res)=>{
 router.patch('/update',async(req,res)=>{
     const vehicle :VehicleModel = req.body;
     res.json(await updateVehicle(vehicle));
+})
+
+router.delete('/delete/:vehicleCode',async(req,res)=>{
+    const vehicleCode = req.params.vehicleCode;
+    res.json(await deleteVehicle(vehicleCode));
 })
 export default router;
