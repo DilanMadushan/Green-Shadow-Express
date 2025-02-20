@@ -31,3 +31,23 @@ export const saveFields = async(field:FieldModel)=>{
         console.log(e);
     }
 }
+
+export const updateField = async (field:FieldModel) => {
+    try{
+        const updatedField = await fieldClient.update({
+            where:{
+                fieldCode:field.fieldCode
+            },
+            data:{
+                image1:field.image1,
+                image2:field.image2,
+                name:field.name,
+                location:field.location,
+                size:field.size
+            }
+        });
+        return updatedField;
+    }catch(e){
+        console.log(e);
+    }
+}

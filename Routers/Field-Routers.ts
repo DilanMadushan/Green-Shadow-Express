@@ -1,6 +1,7 @@
 import express from "express";
-import { getAllFields,saveFields } from "../database/FieldDatabase";
+import { getAllFields,saveFields,updateField} from "../database/FieldDatabase";
 import FieldModel from "../models/FieldModel";
+
 
 const router = express.Router();
 
@@ -13,8 +14,9 @@ router.post('/save',async(req,res)=>{
     res.json(await saveFields(field));
 })
 
-router.get('/update',(req,res)=>{
-    
+router.patch('/update',async(req,res)=>{
+    const field : FieldModel = req.body;
+    res.json(await updateField(field));
 })
 
 router.get('/delete/:code',(req,res)=>{
