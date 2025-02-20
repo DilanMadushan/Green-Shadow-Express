@@ -24,3 +24,20 @@ export const saveStaff = async (staff:StaffModel) => {
         console.log(e);
     }
 }
+
+export const updateStaff = async (staff:StaffModel) => {
+    try{
+        const updatedStaff = await staffClient.update({
+            where:{
+                staffId:staff.staffId
+            },
+            data:staff
+        });
+        return updatedStaff;
+    }catch(e){
+        console.log(e);
+    }
+}
+
+
+const dele
