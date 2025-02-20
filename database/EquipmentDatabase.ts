@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import EquipmentModel from "../models/EquipmentModel";
+import e from "express";
 
 const equipmentClient = new PrismaClient().equipment;
 
@@ -33,6 +34,19 @@ export const updateEquipment = async(equipment:EquipmentModel)=>{
             data:equipment
         })
         return updatedEquipment;
+    }catch(e){
+        console.log(e);
+    }
+}
+
+export const deleteEquipment = async(equipmentId:string)=>{
+    try{
+        const deletedEquipment = equipmentClient.delete({
+            where:{
+                equipmentId:equipmentId
+            }
+        })
+        return deletedEquipment;
     }catch(e){
         console.log(e);
     }

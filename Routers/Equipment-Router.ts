@@ -1,5 +1,5 @@
 import express from 'express';
-import { getAllEquipments,saveEquipment,updateEquipment } from '../database/EquipmentDatabase';
+import { getAllEquipments,saveEquipment,updateEquipment,deleteEquipment} from '../database/EquipmentDatabase';
 import EquipmentModel from '../models/EquipmentModel';
 
 const router = express.Router();
@@ -16,6 +16,11 @@ router.post('/save',async(req,res)=>{
 router.patch('/update',async(req,res)=>{
     const equipment :EquipmentModel = req.body;
     res.json(await updateEquipment(equipment));
+})
+
+router.delete('/delete/:equipmentId',async(req,res)=>{
+    const equipmentId = req.params.equipmentId;
+    res.json(await deleteEquipment(equipmentId));
 })
 
 export default router;
