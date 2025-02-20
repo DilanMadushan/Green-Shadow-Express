@@ -26,7 +26,7 @@ export const saveCrop = async (crop:CropModel) => {
                 scientificName :crop.scientificName,
                 sesson : crop.sesson,
                 category : crop.category,
-                field : crop.field,
+                field : crop.field
             }
         });
         return savedCrop;
