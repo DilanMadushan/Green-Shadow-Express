@@ -10,22 +10,14 @@ import {
 
 const router = express.Router();
 
-router.get('/getAll',(req,res)=>{
-    const allCrops = getAllCrops();
-
-    allCrops.then((data)=>{
-        res.send(JSON.stringify(data));
-    });
-
+router.get('/getAll',async(req,res)=>{
+    res.json(await getAllCrops());
 })
-
 
 router.post('/save',async(req,res)=>{
     const crop : CropModel = req.body;
     res.json(await saveCrop(crop));
 })
-
-
 
 router.patch('/update',async(req,res)=>{
     const crop : CropModel = req.body;
