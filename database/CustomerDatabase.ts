@@ -52,8 +52,22 @@ export const updateCrop = async (crop:CropModel) => {
             }
         });
         return updatedCrop;
-        
+
     }catch(e){
         console.log(e);
+    }
+}
+
+export const deleteCrop = async (cropCode:string) => {
+    try{
+        const deletedCrop = await cropClient.delete({
+            where:{
+                cropCode:cropCode
+            }
+        });
+        return deletedCrop;
+    }catch(e){
+        console.log(e);
+        
     }
 }
