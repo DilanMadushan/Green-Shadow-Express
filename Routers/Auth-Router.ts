@@ -5,6 +5,7 @@ import { cachedDataVersionTag } from 'v8';
 import UserModel from '../models/UserModel';
 import { registerUser,validateUser } from '../database/UserDatabase';
 import exp from 'constants';
+import { log } from 'console';
 
 const router = express.Router();
 
@@ -16,9 +17,9 @@ router.post('/register',async(req,res,next)=>{
     const user : UserModel  = new UserModel(username,password,role);
 
     try{
-        const Registration  = await registerUser(user);
+        await registerUser(user);
         const token = jwt.sign({username:user.username},process.env.SECRET_KEY as Secret, {expiresIn: "10d"});
-        res.status(201).json(await "Bearer " +token);
+        res.status(201).json({token:token});
     }catch(e){
         res.status(500).json(e);
     }
@@ -49,6 +50,23 @@ router.post('/login',async(req,res)=>{
         res.status(500).json(e);
     }
     
+})
+
+router.post('/refresh',async(req,res)=>{
+    const authHeder = req.headers.authorization;
+    const token  = authHeder?.substring(7);
+
+    if(!token){
+        res.status(401).json('No Token Provided');
+    }
+
+    try{
+        const payload = jwt.verify(token as string, process.env.SECRET_KEY as Secret) as { username: string, iat: number };
+        const refreshToken = jwt.sign({username:payload.username},process.env.SECRET_KEY as Secret, {expiresIn: "10d"});
+        res.status(201).json({refreshToken:refreshToken})
+    }catch(e){
+        res.status(403).json(e);
+    }
 })
 
 export const authenticateToken = (req:Request,res:Response,next:NextFunction)=>{
