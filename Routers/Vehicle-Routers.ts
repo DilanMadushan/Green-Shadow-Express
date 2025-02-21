@@ -20,6 +20,11 @@ router.patch('/update',async(req,res)=>{
 
 router.delete('/delete/:vehicleCode',async(req,res)=>{
     const vehicleCode = req.params.vehicleCode;
-    res.json(await deleteVehicle(vehicleCode));
+    
+    try{
+        res.json(await deleteVehicle(vehicleCode));
+    }catch(e:Error|any){
+        res.status(500).json(e.message);
+    }
 })
 export default router;

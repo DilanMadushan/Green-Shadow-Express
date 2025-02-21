@@ -49,6 +49,6 @@ export const deleteVehicle = async(vehicleCode:string)=>{
         });
         return deletedVehicle;
     }catch(e){
-        console.log(e);
+        throw new Error(`Failed to delete vehicle: ${e}`);
     }
 }
