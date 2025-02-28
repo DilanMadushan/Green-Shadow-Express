@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE `field` MODIFY `image1` LONGTEXT NOT NULL,
+    MODIFY `image2` LONGTEXT NOT NULL;

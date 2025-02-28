@@ -8,17 +8,27 @@ import Vehicle_Router from './Routers/Vehicle-Routers'
 import {authenticateToken} from './Routers/Auth-Router'
 import Auth_Router from './Routers/Auth-Router'
 import dotenv from 'dotenv'
+import cors from 'cors'
 
 const app: express.Application = express();
 const port: number = 3000;
 
 dotenv.config();
 
+app.use(cors({
+    origin: 'http://localhost:5173',
+    methods: ['GET', 'POST','PATCH',"DELETE"],
+    credentials: true,
+}));
+var bodyParser = require('body-parser');
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 app.use(express.json());
+
 
 app.use('/auth',Auth_Router);
 
-app.use(authenticateToken);
+// app.use(authenticateToken);
 
 app.use('/crop', Crop_Router);
 

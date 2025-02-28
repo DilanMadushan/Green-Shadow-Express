@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE `field` MODIFY `image1` VARCHAR(10000) NOT NULL;

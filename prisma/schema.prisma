@@ -13,84 +13,80 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
-
-model Field{
-    image1 String
-    image2 String
-    fieldCode String @id 
-    name String
-    location String
-    size Float
-    crop Crop[]
-    log Log[]
-    Equipment Equipment[]
+model Field {
+  image1    String      @db.LongText
+  image2    String      @db.LongText
+  fieldCode String      @id
+  name      String
+  location  String
+  size      Float
+  crop      Crop[]
+  log       Log[]
+  Equipment Equipment[]
 }
 
-model Crop{
-    image String 
-    cropCode String @id 
-    name String
-    scientificName String
-    sesson String
-    category String
-    field String
-    log Log[]
-    fields Field @relation(fields: [field],references: [fieldCode])
-    
+model Crop {
+  image          String @db.LongText
+  cropCode       String @id
+  name           String
+  scientificName String
+  sesson         String
+  category       String
+  field          String
+  log            Log[]
+  fields         Field  @relation(fields: [field], references: [fieldCode])
 }
 
-model Log{
-    logCode String @id 
-    image String
-    date String
-    field String
-    crop String
-    staff String
-    fields Field @relation(fields: [field],references: [fieldCode])
-    crops Crop @relation(fields: [crop],references: [cropCode])
-    staffs Staff @relation(fields: [staff],references: [staffId])
+model Log {
+  logCode String @id
+  image   String
+  date    String
+  field   String
+  crop    String
+  staff   String
+  fields  Field  @relation(fields: [field], references: [fieldCode])
+  crops   Crop   @relation(fields: [crop], references: [cropCode])
+  staffs  Staff  @relation(fields: [staff], references: [staffId])
 }
 
-model Staff{
-    staffId String @id
-    firstName String
-    lastName String
-    dob String
-    gender String
-    joinDate String
-    address String
-    mobile String
-    email String
-    log Log[]
-    vehicle Vehicle[]
-    Equipment Equipment[]
+model Staff {
+  staffId   String      @id
+  firstName String
+  lastName  String
+  dob       String
+  gender    String
+  joinDate  String
+  address   String
+  mobile    String
+  email     String
+  log       Log[]
+  vehicle   Vehicle[]
+  Equipment Equipment[]
 }
 
-model Vehicle{
-    vehicleCode String @id
-    plateNumber String
-    categary String
-    fuelType String
-    status String
-    staff String
-    staffs Staff @relation(fields: [staff],references: [staffId])
+model Vehicle {
+  vehicleCode String @id
+  plateNumber String
+  categary    String
+  fuelType    String
+  status      String
+  staff       String
+  staffs      Staff  @relation(fields: [staff], references: [staffId])
 }
 
-
-model Equipment{
-    equipmentId String @id
-    name String
-    type String
-    status String
-    field String
-    staff String
-    fields Field @relation(fields: [field],references: [fieldCode])
-    staffs Staff @relation(fields: [staff],references: [staffId])
+model Equipment {
+  equipmentId String @id
+  name        String
+  type        String
+  status      String
+  field       String
+  staff       String
+  fields      Field  @relation(fields: [field], references: [fieldCode])
+  staffs      Staff  @relation(fields: [staff], references: [staffId])
 }
 
-model User{
-    username String @id
-    password String
-    role String
+model User {
+  username String @id
+  password String
+  role     String
 }
