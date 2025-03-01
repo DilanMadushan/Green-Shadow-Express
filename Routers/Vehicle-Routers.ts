@@ -9,12 +9,28 @@ router.get('/getall',async(req,res)=>{
 }) 
 
 router.post('/save',async(req,res)=>{
-    const vehicle :VehicleModel = req.body;
+    const newVehicle :VehicleModel = req.body;
+    const vehicle = new VehicleModel(
+        newVehicle.vehicleCode,
+        newVehicle.plateNumber,
+        newVehicle.categary,
+        newVehicle.fuelType,
+        newVehicle.status,
+        newVehicle.staff,
+    );
     res.json(await saveVehicle(vehicle));
 })
 
 router.patch('/update',async(req,res)=>{
-    const vehicle :VehicleModel = req.body;
+    const newVehicle :VehicleModel = req.body;
+    const vehicle = new VehicleModel(
+        newVehicle.vehicleCode,
+        newVehicle.plateNumber,
+        newVehicle.categary,
+        newVehicle.fuelType,
+        newVehicle.status,
+        newVehicle.staff,
+    );
     res.json(await updateVehicle(vehicle));
 })
 

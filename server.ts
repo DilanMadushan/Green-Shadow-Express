@@ -28,7 +28,7 @@ app.use(express.json());
 
 app.use('/auth',Auth_Router);
 
-// app.use(authenticateToken);
+app.use(authenticateToken);
 
 app.use('/crop', Crop_Router);
 

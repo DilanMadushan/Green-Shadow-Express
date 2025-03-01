@@ -9,12 +9,36 @@ router.get('/getall',async(req,res)=>{
 })
 
 router.post('/save',async(req,res)=>{
-    const staff :StaffModel = req.body;
+    const newStaff :StaffModel = req.body;
+    const staff = new StaffModel(
+        newStaff.staffId,
+        newStaff.firstName,
+        newStaff.lastName,
+        newStaff.dob,
+        newStaff.gender,
+        newStaff.joinDate,
+        newStaff.address,
+        newStaff.mobile,
+        newStaff.email,
+    )
+
     res.json(await saveStaff(staff));
 });
 
 router.patch('/update',async(req,res)=>{
-    const staff : StaffModel = req.body;
+    const newStaff :StaffModel = req.body;
+    const staff = new StaffModel(
+        newStaff.staffId,
+        newStaff.firstName,
+        newStaff.lastName,
+        newStaff.dob,
+        newStaff.gender,
+        newStaff.joinDate,
+        newStaff.address,
+        newStaff.mobile,
+        newStaff.email,
+    )
+
     res.json(await updateStaff(staff));
 })
 

@@ -9,12 +9,28 @@ router.get('/getall',async(req,res)=>{
 })
 
 router.post("/save",async(req,res)=>{
-    const log : LogModel = req.body;
+    const newLog : LogModel = req.body;
+    const log = new LogModel(
+        newLog.logCode,
+        newLog.image,
+        newLog.date,
+        newLog.field,
+        newLog.crop,
+        newLog.staff
+    );
     res.json(await saveLog(log));
 })
 
 router.patch("/update",async(req,res)=>{
-    const log : LogModel = req.body;
+    const newLog : LogModel = req.body;
+    const log = new LogModel(
+        newLog.logCode,
+        newLog.image,
+        newLog.date,
+        newLog.field,
+        newLog.crop,
+        newLog.staff
+    );
     res.json(await updateLog(log));
 })
 

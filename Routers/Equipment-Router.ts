@@ -9,12 +9,30 @@ router.get('/getall',async(req,res)=>{
 })
 
 router.post('/save',async(req,res)=>{
-    const equipment : EquipmentModel = req.body;
+    const equipmentTemp : EquipmentModel = req.body;
+    const equipment = new EquipmentModel(
+        equipmentTemp.equipmentId,
+        equipmentTemp.name,
+        equipmentTemp.type,
+        equipmentTemp.status,
+        equipmentTemp.field,
+        equipmentTemp.staff,
+    );
+
+    console.log(equipment)
     res.json(await saveEquipment(equipment));
 })
 
 router.patch('/update',async(req,res)=>{
-    const equipment :EquipmentModel = req.body;
+    const equipmentTemp : EquipmentModel = req.body;
+    const equipment = new EquipmentModel(
+        equipmentTemp.equipmentId,
+        equipmentTemp.name,
+        equipmentTemp.type,
+        equipmentTemp.status,
+        equipmentTemp.field,
+        equipmentTemp.staff,
+    );
     res.json(await updateEquipment(equipment));
 })
 
